@@ -1,0 +1,563 @@
+
+Laboratorio 4.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000030c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002b8  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000030c  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000033c  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000040  00000000  00000000  00000380  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000797  00000000  00000000  000003c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000063b  00000000  00000000  00000b57  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000475  00000000  00000000  00001192  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000034  00000000  00000000  00001608  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003a2  00000000  00000000  0000163c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000047  00000000  00000000  000019de  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  00001a25  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 9b 00 	call	0x136	; 0x136 <main>
+  78:	0c 94 5a 01 	jmp	0x2b4	; 0x2b4 <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <tabla_segmentos>:
+  80:	03 9f       	mul	r16, r19
+  82:	25 0d       	add	r18, r5
+  84:	99 49       	sbci	r25, 0x99	; 153
+  86:	41 1f       	adc	r20, r17
+  88:	01 09       	sbc	r16, r1
+
+0000008a <mostrar_voltaje>:
+    .byte 0b00000001    ; 8
+    .byte 0b00001001    ; 9
+
+.global mostrar_voltaje
+mostrar_voltaje:
+    push r16
+  8a:	0f 93       	push	r16
+    push r17
+  8c:	1f 93       	push	r17
+    push r18
+  8e:	2f 93       	push	r18
+    push r28
+  90:	cf 93       	push	r28
+    push r29
+  92:	df 93       	push	r29
+    push r30
+  94:	ef 93       	push	r30
+    push r31
+  96:	ff 93       	push	r31
+
+    ; Configurar puertos
+    ldi r16, 0b00111101
+  98:	0d e3       	ldi	r16, 0x3D	; 61
+    out _SFR_IO_ADDR(DDRB), r16
+  9a:	04 b9       	out	0x04, r16	; 4
+    ldi r16, 0b10010000
+  9c:	00 e9       	ldi	r16, 0x90	; 144
+    out _SFR_IO_ADDR(DDRD), r16
+  9e:	0a b9       	out	0x0a, r16	; 10
+
+    ; centivoltios llega en r25:r24
+    ; CALCULAR CENTENAS
+    clr r28
+  a0:	cc 27       	eor	r28, r28
+    ldi r17, 100
+  a2:	14 e6       	ldi	r17, 0x64	; 100
+
+000000a4 <cent_loop>:
+cent_loop:
+    cpi r25, 0
+  a4:	90 30       	cpi	r25, 0x00	; 0
+    brne cent_sub
+  a6:	11 f4       	brne	.+4      	; 0xac <cent_sub>
+    cp  r24, r17
+  a8:	81 17       	cp	r24, r17
+    brlo cent_done
+  aa:	20 f0       	brcs	.+8      	; 0xb4 <cent_done>
+
+000000ac <cent_sub>:
+cent_sub:
+    sub r24, r17
+  ac:	81 1b       	sub	r24, r17
+    sbci r25, 0
+  ae:	90 40       	sbci	r25, 0x00	; 0
+    inc r28
+  b0:	c3 95       	inc	r28
+    rjmp cent_loop
+  b2:	f8 cf       	rjmp	.-16     	; 0xa4 <cent_loop>
+
+000000b4 <cent_done>:
+cent_done:
+
+    ; CALCULAR DECENAS
+    clr r29
+  b4:	dd 27       	eor	r29, r29
+    ldi r17, 10
+  b6:	1a e0       	ldi	r17, 0x0A	; 10
+
+000000b8 <dec_loop>:
+dec_loop:
+    cp  r24, r17
+  b8:	81 17       	cp	r24, r17
+    brlo dec_done
+  ba:	18 f0       	brcs	.+6      	; 0xc2 <dec_done>
+    sub r24, r17
+  bc:	81 1b       	sub	r24, r17
+    inc r29
+  be:	d3 95       	inc	r29
+    rjmp dec_loop
+  c0:	fb cf       	rjmp	.-10     	; 0xb8 <dec_loop>
+
+000000c2 <dec_done>:
+dec_done:
+    ; r28=centenas, r29=decenas, r24=unidades
+
+    ; Mostrar centenas (izquierda)
+    mov r16, r28
+  c2:	0c 2f       	mov	r16, r28
+    ldi r17, 0b10000000
+  c4:	10 e8       	ldi	r17, 0x80	; 128
+    call sacanum
+  c6:	0e 94 75 00 	call	0xea	; 0xea <sacanum>
+
+    ; Mostrar decenas con punto decimal
+    mov r16, r29
+  ca:	0d 2f       	mov	r16, r29
+    ldi r17, 0b01000000
+  cc:	10 e4       	ldi	r17, 0x40	; 64
+    call sacanum_punto
+  ce:	0e 94 7e 00 	call	0xfc	; 0xfc <sacanum_punto>
+
+    ; Mostrar unidades
+    mov r16, r24
+  d2:	08 2f       	mov	r16, r24
+    ldi r17, 0b00100000
+  d4:	10 e2       	ldi	r17, 0x20	; 32
+    call sacanum
+  d6:	0e 94 75 00 	call	0xea	; 0xea <sacanum>
+
+    pop r31
+  da:	ff 91       	pop	r31
+    pop r30
+  dc:	ef 91       	pop	r30
+    pop r29
+  de:	df 91       	pop	r29
+    pop r28
+  e0:	cf 91       	pop	r28
+    pop r18
+  e2:	2f 91       	pop	r18
+    pop r17
+  e4:	1f 91       	pop	r17
+    pop r16
+  e6:	0f 91       	pop	r16
+    ret
+  e8:	08 95       	ret
+
+000000ea <sacanum>:
+
+sacanum:
+    ldi r30, lo8(tabla_segmentos)
+  ea:	e0 e8       	ldi	r30, 0x80	; 128
+    ldi r31, hi8(tabla_segmentos)
+  ec:	f0 e0       	ldi	r31, 0x00	; 0
+    add r30, r16
+  ee:	e0 0f       	add	r30, r16
+    brcc sacanum_ok
+  f0:	08 f4       	brcc	.+2      	; 0xf4 <sacanum_ok>
+    inc r31
+  f2:	f3 95       	inc	r31
+
+000000f4 <sacanum_ok>:
+sacanum_ok:
+    lpm r16, Z
+  f4:	04 91       	lpm	r16, Z
+    call enviar_display
+  f6:	0e 94 88 00 	call	0x110	; 0x110 <enviar_display>
+    ret
+  fa:	08 95       	ret
+
+000000fc <sacanum_punto>:
+
+sacanum_punto:
+    ldi r30, lo8(tabla_segmentos)
+  fc:	e0 e8       	ldi	r30, 0x80	; 128
+    ldi r31, hi8(tabla_segmentos)
+  fe:	f0 e0       	ldi	r31, 0x00	; 0
+    add r30, r16
+ 100:	e0 0f       	add	r30, r16
+    brcc sacanum_pto_ok
+ 102:	08 f4       	brcc	.+2      	; 0x106 <sacanum_pto_ok>
+    inc r31
+ 104:	f3 95       	inc	r31
+
+00000106 <sacanum_pto_ok>:
+sacanum_pto_ok:
+    lpm r16, Z
+ 106:	04 91       	lpm	r16, Z
+    andi r16, 0b11111110
+ 108:	0e 7f       	andi	r16, 0xFE	; 254
+    call enviar_display
+ 10a:	0e 94 88 00 	call	0x110	; 0x110 <enviar_display>
+    ret
+ 10e:	08 95       	ret
+
+00000110 <enviar_display>:
+
+enviar_display:
+    call dato_serie
+ 110:	0e 94 90 00 	call	0x120	; 0x120 <dato_serie>
+    mov r16, r17
+ 114:	01 2f       	mov	r16, r17
+    call dato_serie
+ 116:	0e 94 90 00 	call	0x120	; 0x120 <dato_serie>
+    sbi _SFR_IO_ADDR(PORTD), 4
+ 11a:	5c 9a       	sbi	0x0b, 4	; 11
+    cbi _SFR_IO_ADDR(PORTD), 4
+ 11c:	5c 98       	cbi	0x0b, 4	; 11
+    ret
+ 11e:	08 95       	ret
+
+00000120 <dato_serie>:
+
+dato_serie:
+    ldi r18, 8
+ 120:	28 e0       	ldi	r18, 0x08	; 8
+
+00000122 <loop_dato1>:
+loop_dato1:
+    cbi _SFR_IO_ADDR(PORTD), 7
+ 122:	5f 98       	cbi	0x0b, 7	; 11
+    lsr r16
+ 124:	06 95       	lsr	r16
+    brcs loop_dato2
+ 126:	10 f0       	brcs	.+4      	; 0x12c <loop_dato2>
+    cbi _SFR_IO_ADDR(PORTB), 0
+ 128:	28 98       	cbi	0x05, 0	; 5
+    rjmp loop_dato3
+ 12a:	01 c0       	rjmp	.+2      	; 0x12e <loop_dato3>
+
+0000012c <loop_dato2>:
+loop_dato2:
+    sbi _SFR_IO_ADDR(PORTB), 0
+ 12c:	28 9a       	sbi	0x05, 0	; 5
+
+0000012e <loop_dato3>:
+loop_dato3:
+    sbi _SFR_IO_ADDR(PORTD), 7
+ 12e:	5f 9a       	sbi	0x0b, 7	; 11
+    dec r18
+ 130:	2a 95       	dec	r18
+    brne loop_dato1
+ 132:	b9 f7       	brne	.-18     	; 0x122 <loop_dato1>
+ 134:	08 95       	ret
+
+00000136 <main>:
+#include <avr/io.h>
+
+extern void mostrar_voltaje(uint16_t centivoltios);
+
+int main(void)
+{
+ 136:	cf 93       	push	r28
+ 138:	df 93       	push	r29
+ 13a:	cd b7       	in	r28, 0x3d	; 61
+ 13c:	de b7       	in	r29, 0x3e	; 62
+ 13e:	2c 97       	sbiw	r28, 0x0c	; 12
+ 140:	0f b6       	in	r0, 0x3f	; 63
+ 142:	f8 94       	cli
+ 144:	de bf       	out	0x3e, r29	; 62
+ 146:	0f be       	out	0x3f, r0	; 63
+ 148:	cd bf       	out	0x3d, r28	; 61
+    // CONFIGURACIÓN DEL ADC
+    ADMUX = (1 << REFS0);
+ 14a:	8c e7       	ldi	r24, 0x7C	; 124
+ 14c:	90 e0       	ldi	r25, 0x00	; 0
+ 14e:	20 e4       	ldi	r18, 0x40	; 64
+ 150:	fc 01       	movw	r30, r24
+ 152:	20 83       	st	Z, r18
+    ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+ 154:	8a e7       	ldi	r24, 0x7A	; 122
+ 156:	90 e0       	ldi	r25, 0x00	; 0
+ 158:	27 e8       	ldi	r18, 0x87	; 135
+ 15a:	fc 01       	movw	r30, r24
+ 15c:	20 83       	st	Z, r18
+
+    uint16_t resultado_adc;
+    uint32_t suma;
+    uint16_t promedio;
+    uint16_t centivoltios = 0;
+ 15e:	18 86       	std	Y+8, r1	; 0x08
+ 160:	1f 82       	std	Y+7, r1	; 0x07
+
+    while (1)
+    {
+        // PROMEDIAR 100 CONVERSIONES
+        suma = 0;
+ 162:	19 82       	std	Y+1, r1	; 0x01
+ 164:	1a 82       	std	Y+2, r1	; 0x02
+ 166:	1b 82       	std	Y+3, r1	; 0x03
+ 168:	1c 82       	std	Y+4, r1	; 0x04
+        for (uint8_t i = 0; i < 100; i++)
+ 16a:	1d 82       	std	Y+5, r1	; 0x05
+ 16c:	2f c0       	rjmp	.+94     	; 0x1cc <main+0x96>
+        {
+            ADCSRA |= (1 << ADSC);
+ 16e:	8a e7       	ldi	r24, 0x7A	; 122
+ 170:	90 e0       	ldi	r25, 0x00	; 0
+ 172:	2a e7       	ldi	r18, 0x7A	; 122
+ 174:	30 e0       	ldi	r19, 0x00	; 0
+ 176:	f9 01       	movw	r30, r18
+ 178:	20 81       	ld	r18, Z
+ 17a:	20 64       	ori	r18, 0x40	; 64
+ 17c:	fc 01       	movw	r30, r24
+ 17e:	20 83       	st	Z, r18
+            while (ADCSRA & (1 << ADSC));
+ 180:	00 00       	nop
+ 182:	8a e7       	ldi	r24, 0x7A	; 122
+ 184:	90 e0       	ldi	r25, 0x00	; 0
+ 186:	fc 01       	movw	r30, r24
+ 188:	80 81       	ld	r24, Z
+ 18a:	88 2f       	mov	r24, r24
+ 18c:	90 e0       	ldi	r25, 0x00	; 0
+ 18e:	80 74       	andi	r24, 0x40	; 64
+ 190:	99 27       	eor	r25, r25
+ 192:	89 2b       	or	r24, r25
+ 194:	b1 f7       	brne	.-20     	; 0x182 <main+0x4c>
+            resultado_adc = ADC;
+ 196:	88 e7       	ldi	r24, 0x78	; 120
+ 198:	90 e0       	ldi	r25, 0x00	; 0
+ 19a:	fc 01       	movw	r30, r24
+ 19c:	80 81       	ld	r24, Z
+ 19e:	91 81       	ldd	r25, Z+1	; 0x01
+ 1a0:	9c 87       	std	Y+12, r25	; 0x0c
+ 1a2:	8b 87       	std	Y+11, r24	; 0x0b
+            suma += resultado_adc;
+ 1a4:	8b 85       	ldd	r24, Y+11	; 0x0b
+ 1a6:	9c 85       	ldd	r25, Y+12	; 0x0c
+ 1a8:	cc 01       	movw	r24, r24
+ 1aa:	a0 e0       	ldi	r26, 0x00	; 0
+ 1ac:	b0 e0       	ldi	r27, 0x00	; 0
+ 1ae:	29 81       	ldd	r18, Y+1	; 0x01
+ 1b0:	3a 81       	ldd	r19, Y+2	; 0x02
+ 1b2:	4b 81       	ldd	r20, Y+3	; 0x03
+ 1b4:	5c 81       	ldd	r21, Y+4	; 0x04
+ 1b6:	82 0f       	add	r24, r18
+ 1b8:	93 1f       	adc	r25, r19
+ 1ba:	a4 1f       	adc	r26, r20
+ 1bc:	b5 1f       	adc	r27, r21
+ 1be:	89 83       	std	Y+1, r24	; 0x01
+ 1c0:	9a 83       	std	Y+2, r25	; 0x02
+ 1c2:	ab 83       	std	Y+3, r26	; 0x03
+ 1c4:	bc 83       	std	Y+4, r27	; 0x04
+
+    while (1)
+    {
+        // PROMEDIAR 100 CONVERSIONES
+        suma = 0;
+        for (uint8_t i = 0; i < 100; i++)
+ 1c6:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1c8:	8f 5f       	subi	r24, 0xFF	; 255
+ 1ca:	8d 83       	std	Y+5, r24	; 0x05
+ 1cc:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1ce:	84 36       	cpi	r24, 0x64	; 100
+ 1d0:	70 f2       	brcs	.-100    	; 0x16e <main+0x38>
+            ADCSRA |= (1 << ADSC);
+            while (ADCSRA & (1 << ADSC));
+            resultado_adc = ADC;
+            suma += resultado_adc;
+        }
+        promedio = suma / 100;
+ 1d2:	89 81       	ldd	r24, Y+1	; 0x01
+ 1d4:	9a 81       	ldd	r25, Y+2	; 0x02
+ 1d6:	ab 81       	ldd	r26, Y+3	; 0x03
+ 1d8:	bc 81       	ldd	r27, Y+4	; 0x04
+ 1da:	24 e6       	ldi	r18, 0x64	; 100
+ 1dc:	30 e0       	ldi	r19, 0x00	; 0
+ 1de:	40 e0       	ldi	r20, 0x00	; 0
+ 1e0:	50 e0       	ldi	r21, 0x00	; 0
+ 1e2:	bc 01       	movw	r22, r24
+ 1e4:	cd 01       	movw	r24, r26
+ 1e6:	0e 94 1e 01 	call	0x23c	; 0x23c <__udivmodsi4>
+ 1ea:	da 01       	movw	r26, r20
+ 1ec:	c9 01       	movw	r24, r18
+ 1ee:	9a 87       	std	Y+10, r25	; 0x0a
+ 1f0:	89 87       	std	Y+9, r24	; 0x09
+
+        // CONVERTIR A CENTIVOLTIOS
+        centivoltios = ((uint32_t)promedio * 500UL) / 1023UL;
+ 1f2:	89 85       	ldd	r24, Y+9	; 0x09
+ 1f4:	9a 85       	ldd	r25, Y+10	; 0x0a
+ 1f6:	9c 01       	movw	r18, r24
+ 1f8:	40 e0       	ldi	r20, 0x00	; 0
+ 1fa:	50 e0       	ldi	r21, 0x00	; 0
+ 1fc:	84 ef       	ldi	r24, 0xF4	; 244
+ 1fe:	91 e0       	ldi	r25, 0x01	; 1
+ 200:	dc 01       	movw	r26, r24
+ 202:	0e 94 40 01 	call	0x280	; 0x280 <__muluhisi3>
+ 206:	dc 01       	movw	r26, r24
+ 208:	cb 01       	movw	r24, r22
+ 20a:	2f ef       	ldi	r18, 0xFF	; 255
+ 20c:	33 e0       	ldi	r19, 0x03	; 3
+ 20e:	40 e0       	ldi	r20, 0x00	; 0
+ 210:	50 e0       	ldi	r21, 0x00	; 0
+ 212:	bc 01       	movw	r22, r24
+ 214:	cd 01       	movw	r24, r26
+ 216:	0e 94 1e 01 	call	0x23c	; 0x23c <__udivmodsi4>
+ 21a:	da 01       	movw	r26, r20
+ 21c:	c9 01       	movw	r24, r18
+ 21e:	98 87       	std	Y+8, r25	; 0x08
+ 220:	8f 83       	std	Y+7, r24	; 0x07
+
+        // MOSTRAR EN EL DISPLAY muchas veces para que se vea estable
+        for (uint8_t r = 0; r < 50; r++)
+ 222:	1e 82       	std	Y+6, r1	; 0x06
+ 224:	07 c0       	rjmp	.+14     	; 0x234 <main+0xfe>
+        {
+            mostrar_voltaje(centivoltios);
+ 226:	8f 81       	ldd	r24, Y+7	; 0x07
+ 228:	98 85       	ldd	r25, Y+8	; 0x08
+ 22a:	0e 94 45 00 	call	0x8a	; 0x8a <mostrar_voltaje>
+
+        // CONVERTIR A CENTIVOLTIOS
+        centivoltios = ((uint32_t)promedio * 500UL) / 1023UL;
+
+        // MOSTRAR EN EL DISPLAY muchas veces para que se vea estable
+        for (uint8_t r = 0; r < 50; r++)
+ 22e:	8e 81       	ldd	r24, Y+6	; 0x06
+ 230:	8f 5f       	subi	r24, 0xFF	; 255
+ 232:	8e 83       	std	Y+6, r24	; 0x06
+ 234:	8e 81       	ldd	r24, Y+6	; 0x06
+ 236:	82 33       	cpi	r24, 0x32	; 50
+ 238:	b0 f3       	brcs	.-20     	; 0x226 <main+0xf0>
+        {
+            mostrar_voltaje(centivoltios);
+        }
+    }
+ 23a:	93 cf       	rjmp	.-218    	; 0x162 <main+0x2c>
+
+0000023c <__udivmodsi4>:
+ 23c:	a1 e2       	ldi	r26, 0x21	; 33
+ 23e:	1a 2e       	mov	r1, r26
+ 240:	aa 1b       	sub	r26, r26
+ 242:	bb 1b       	sub	r27, r27
+ 244:	fd 01       	movw	r30, r26
+ 246:	0d c0       	rjmp	.+26     	; 0x262 <__udivmodsi4_ep>
+
+00000248 <__udivmodsi4_loop>:
+ 248:	aa 1f       	adc	r26, r26
+ 24a:	bb 1f       	adc	r27, r27
+ 24c:	ee 1f       	adc	r30, r30
+ 24e:	ff 1f       	adc	r31, r31
+ 250:	a2 17       	cp	r26, r18
+ 252:	b3 07       	cpc	r27, r19
+ 254:	e4 07       	cpc	r30, r20
+ 256:	f5 07       	cpc	r31, r21
+ 258:	20 f0       	brcs	.+8      	; 0x262 <__udivmodsi4_ep>
+ 25a:	a2 1b       	sub	r26, r18
+ 25c:	b3 0b       	sbc	r27, r19
+ 25e:	e4 0b       	sbc	r30, r20
+ 260:	f5 0b       	sbc	r31, r21
+
+00000262 <__udivmodsi4_ep>:
+ 262:	66 1f       	adc	r22, r22
+ 264:	77 1f       	adc	r23, r23
+ 266:	88 1f       	adc	r24, r24
+ 268:	99 1f       	adc	r25, r25
+ 26a:	1a 94       	dec	r1
+ 26c:	69 f7       	brne	.-38     	; 0x248 <__udivmodsi4_loop>
+ 26e:	60 95       	com	r22
+ 270:	70 95       	com	r23
+ 272:	80 95       	com	r24
+ 274:	90 95       	com	r25
+ 276:	9b 01       	movw	r18, r22
+ 278:	ac 01       	movw	r20, r24
+ 27a:	bd 01       	movw	r22, r26
+ 27c:	cf 01       	movw	r24, r30
+ 27e:	08 95       	ret
+
+00000280 <__muluhisi3>:
+ 280:	0e 94 4b 01 	call	0x296	; 0x296 <__umulhisi3>
+ 284:	a5 9f       	mul	r26, r21
+ 286:	90 0d       	add	r25, r0
+ 288:	b4 9f       	mul	r27, r20
+ 28a:	90 0d       	add	r25, r0
+ 28c:	a4 9f       	mul	r26, r20
+ 28e:	80 0d       	add	r24, r0
+ 290:	91 1d       	adc	r25, r1
+ 292:	11 24       	eor	r1, r1
+ 294:	08 95       	ret
+
+00000296 <__umulhisi3>:
+ 296:	a2 9f       	mul	r26, r18
+ 298:	b0 01       	movw	r22, r0
+ 29a:	b3 9f       	mul	r27, r19
+ 29c:	c0 01       	movw	r24, r0
+ 29e:	a3 9f       	mul	r26, r19
+ 2a0:	70 0d       	add	r23, r0
+ 2a2:	81 1d       	adc	r24, r1
+ 2a4:	11 24       	eor	r1, r1
+ 2a6:	91 1d       	adc	r25, r1
+ 2a8:	b2 9f       	mul	r27, r18
+ 2aa:	70 0d       	add	r23, r0
+ 2ac:	81 1d       	adc	r24, r1
+ 2ae:	11 24       	eor	r1, r1
+ 2b0:	91 1d       	adc	r25, r1
+ 2b2:	08 95       	ret
+
+000002b4 <_exit>:
+ 2b4:	f8 94       	cli
+
+000002b6 <__stop_program>:
+ 2b6:	ff cf       	rjmp	.-2      	; 0x2b6 <__stop_program>
